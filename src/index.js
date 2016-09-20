@@ -1,13 +1,15 @@
-var React = require('react');
-var ReactDom = require('react-dom');
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from './reducers/index'
+import App from './components/App'
 
-var Hello = React.createClass({
-    render: function render() {
-        return <div>Hello {this.props.name}</div>;
-    }
-});
+let store = createStore(todoApp)
 
-ReactDom.render(
-    <Hello name="World" />,
-    document.getElementById('AppRoot')
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
 )
